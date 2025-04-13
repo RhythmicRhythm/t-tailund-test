@@ -10,6 +10,8 @@ const Home = () => {
   const [activeSlider, setActiveSlider] = useState<
     null | "horizontal" | "vertical"
   >(null);
+  const [jointTemp, setJointTemp] = useState(20);
+  console.log(jointTemp)
 
   const activateHorizontalSlider = () => {
     setActiveSlider("horizontal");
@@ -36,13 +38,12 @@ const Home = () => {
           {/* Close button */}
           <div className="absolute top-4 right-4">
             <div className="h-8 w-8 bg-white rounded-md p-1 shadow-sm">
-            <IoMdClose size={20} className="text-red-600"/>
+              <IoMdClose size={20} className="text-red-600" />
             </div>
           </div>
 
           <div className="flex gap-4 mt-12">
             <div className="p-2 w-3/4">
-
               <div className="flex gap-4">
                 <div className="flex-grow grid grid-cols-3 gap-4">
                   {/* Left panel */}
@@ -71,6 +72,8 @@ const Home = () => {
                 isActive={activeSlider === "vertical"}
                 setActive={activateVerticalSlider}
                 setInactive={deactivateSliders}
+                temperature={jointTemp}
+                setTemperature={setJointTemp}
               />
             </div>
           </div>

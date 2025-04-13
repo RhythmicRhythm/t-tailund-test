@@ -41,7 +41,6 @@ const TemperatureSlider = ({
   };
 
   const handleSliderClick = (e: React.MouseEvent) => {
-    // Don't respond to clicks if we're in the middle of dragging
     if (isActive) return;
 
     const sliderRect = e.currentTarget.getBoundingClientRect();
@@ -52,13 +51,12 @@ const TemperatureSlider = ({
     newTemp = Math.max(minTemp, Math.min(maxTemp, Math.round(newTemp)));
     setTemperature(newTemp);
 
-    // Briefly activate then deactivate to handle the click without entering drag mode
     setActive();
     setTimeout(() => setInactive(), 100);
   };
 
   useEffect(() => {
-    // Only add event listeners if this slider is active
+
     if (!isActive) return;
 
     const handleMouseMove = (e: MouseEvent) => {

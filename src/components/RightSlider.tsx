@@ -6,17 +6,21 @@ interface RightSliderProps {
   isActive: boolean;
   setActive: () => void;
   setInactive: () => void;
+  temperature: number;
+  setTemperature: (temp: number) => void;
 }
 
 const RightSlider: React.FC<RightSliderProps> = ({
   isActive,
   setActive,
   setInactive,
+  temperature, 
+  setTemperature,
 }) => {
-  const [temperature, setTemperature] = useState<number>(40);
+  // const [temperature, setTemperature] = useState<number>(40);
   const minTemp = 0;
   const maxTemp = 80;
-  const step = 10; // New step value for 10°C increments
+  const step = 10; 
 
   const fillHeight = ((temperature - minTemp) / (maxTemp - minTemp)) * 100;
 
@@ -38,16 +42,12 @@ const RightSlider: React.FC<RightSliderProps> = ({
     const sliderHeight = sliderRect.height;
     const clickPositionY = clientY - sliderRect.top;
 
-    // Calculate position (0 to 1)
     const position = 1 - (clickPositionY / sliderHeight);
     
-    // Calculate raw temperature
     const rawTemp = minTemp + position * (maxTemp - minTemp);
     
-    // Snap to nearest step (10°C)
     const snappedTemp = Math.round(rawTemp / step) * step;
     
-    // Clamp between min and max
     return Math.max(minTemp, Math.min(maxTemp, snappedTemp));
   };
 
@@ -89,7 +89,6 @@ const RightSlider: React.FC<RightSliderProps> = ({
     };
   }, [isActive, temperature, setInactive]);
 
-  // Rest of the component remains the same...
   const temperatureMarkers = [];
   for (let i = 0; i <= 8; i++) {
     const temp = i * 10;
