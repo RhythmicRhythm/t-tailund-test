@@ -10,7 +10,7 @@ const NormalEnviroment = () => {
     
     {/* Status Message */}
     <div className="text-gray-600 text-sm text-left">
-      All good, both sensors are showing the joints in healthy status.
+      All good, both sensors are showing the joints in healthy status. damnm damn
     </div>
   </div>
   )
